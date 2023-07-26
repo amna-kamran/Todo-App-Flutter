@@ -36,14 +36,18 @@ class _FiAs3AmnaHomeState extends State<FiAs3AmnaHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          addNewTile();
-          debugPrint("pressed");
-        },
-        backgroundColor: CustomColors.yellow,
-        child: const Icon(
-          Icons.add,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 20, right: 15),
+        child: FloatingActionButton(
+          onPressed: () {
+            addNewTile();
+            debugPrint("pressed");
+          },
+          backgroundColor: CustomColors.yellow,
+          child: const Icon(
+            Icons.add,
+            size: 35,
+          ),
         ),
       ),
       backgroundColor: CustomColors.backgroundColor,

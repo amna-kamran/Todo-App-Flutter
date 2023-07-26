@@ -26,16 +26,12 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
       margin: const EdgeInsets.only(
         left: 20,
         right: 20,
-        top: 8,
-        bottom: 8,
+        bottom: 10,
       ),
-      padding: const EdgeInsets.all(30),
-      constraints: const BoxConstraints(
-        maxWidth: double.infinity,
-      ),
+      padding: const EdgeInsets.only(left: 25, top: 30, bottom: 30, right: 25),
       decoration: BoxDecoration(
         color: CustomColors.tileColor,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         children: [
@@ -48,13 +44,13 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
             child: hasCompleted
                 ? SvgPicture.asset(
                     FiAs2AmnaAssets.checkBoxYellowSvg,
-                    height: 25,
-                    width: 25,
+                    height: 20,
+                    width: 20,
                   )
                 : SvgPicture.asset(
                     FiAs2AmnaAssets.boxSvg,
-                    height: 25,
-                    width: 25,
+                    height: 20,
+                    width: 20,
                   ),
           ),
           FiAs3AmnaSpaces.w25,
