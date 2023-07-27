@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/widget/fi_as3_amna_task_tile.dart';
 import 'package:todo_app/screens/home/widget/overlay_widget.dart';
 import 'package:todo_app/screens/home/widget/scroll_search_bar.dart';
+import 'package:todo_app/services/data_writer.dart';
 
 import '../../Themes/fi_as3_amna_colors.dart';
 
@@ -69,7 +70,8 @@ class _HomeState extends State<Home> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20, right: 15),
         child: FloatingActionButton(
-          onPressed: () {
+          onPressed: () async {
+            await DataWriter.create();
             showOverlay();
             debugPrint("pressed");
           },
