@@ -4,14 +4,14 @@ import 'package:todo_app/screens/home/widget/fi_as3_amna_task_tile.dart';
 import '../../Themes/fi_as3_amna_colors.dart';
 import 'widget/scroll_search_bar.dart';
 
-class FiAs3AmnaHome extends StatefulWidget {
-  const FiAs3AmnaHome({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<FiAs3AmnaHome> createState() => _FiAs3AmnaHomeState();
+  State<Home> createState() => _HomeState();
 }
 
-class _FiAs3AmnaHomeState extends State<FiAs3AmnaHome> {
+class _HomeState extends State<Home> {
   List<Widget> dynamicWidgets = [
     FiAs3AmnaTaskTile(
       text: "1243",

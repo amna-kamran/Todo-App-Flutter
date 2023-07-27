@@ -1,7 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/home/fi_as3_amna_home.dart';
+import 'package:todo_app/screens/home/home.dart';
+import 'package:todo_app/screens/login.dart';
+import 'package:todo_app/screens/register.dart';
 
-void main(List<String> args) {
+import 'firebase_options.dart';
+
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -13,7 +22,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Summer Internship \'23',
-      home: FiAs3AmnaHome(),
+      home: Register(),
     );
   }
 }
