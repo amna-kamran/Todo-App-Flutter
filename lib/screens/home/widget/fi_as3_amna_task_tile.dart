@@ -43,17 +43,17 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
             },
             child: hasCompleted
                 ? SvgPicture.asset(
-                    FiAs2AmnaAssets.checkBoxYellowSvg,
+                    Assets.checkBoxYellowSvg,
                     height: 20,
                     width: 20,
                   )
                 : SvgPicture.asset(
-                    FiAs2AmnaAssets.boxSvg,
+                    Assets.boxSvg,
                     height: 20,
                     width: 20,
                   ),
           ),
-          FiAs3AmnaSpaces.w25,
+          Spaces.w25,
           Flexible(
             // Wrap the text with Flexible
             child: Text(

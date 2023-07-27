@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FiAs3AmnaSpaces {
+class Spaces {
   static const h5 = SizedBox(height: 5);
   static const h10 = SizedBox(height: 10);
   static const h15 = SizedBox(height: 15);

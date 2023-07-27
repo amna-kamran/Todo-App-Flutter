@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/widget/fi_as3_amna_task_tile.dart';
 
 import '../../Themes/fi_as3_amna_colors.dart';
+import 'widget/scroll_search_bar.dart';
 
 class FiAs3AmnaHome extends StatefulWidget {
   const FiAs3AmnaHome({super.key});
@@ -53,9 +54,12 @@ class _FiAs3AmnaHomeState extends State<FiAs3AmnaHome> {
       backgroundColor: CustomColors.backgroundColor,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            children: dynamicWidgets,
-          ),
+          child: Column(children: [
+            const SearchBarWidget(),
+            Column(
+              children: dynamicWidgets,
+            ),
+          ]),
         ),
       ),
     );
