@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/home.dart';
-import 'package:todo_app/screens/login.dart';
-import 'package:todo_app/screens/register.dart';
 
 import 'firebase_options.dart';
+import 'screens/home/widget/form_with_container.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,10 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Summer Internship \'23',
-      home: Register(),
+      home: Home(),
     );
   }
 }
