@@ -15,13 +15,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Widget> dynamicWidgets = [
-    FiAs3AmnaTaskTile(
+    const FiAs3AmnaTaskTile(
       text: "1243",
     ),
-    FiAs3AmnaTaskTile(
+    const FiAs3AmnaTaskTile(
       text: "22222",
     ),
-    FiAs3AmnaTaskTile(
+    const FiAs3AmnaTaskTile(
       text: "amna",
     ),
   ];
@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
       ),
     );
 
-    Overlay.of(context)?.insert(overlayEntry!);
+    Overlay.of(context).insert(overlayEntry!);
   }
 
   @override
@@ -70,8 +70,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20, right: 15),
         child: FloatingActionButton(
-          onPressed: () async {
-            await DataWriter.create();
+          onPressed: () {
             showOverlay();
             debugPrint("pressed");
           },

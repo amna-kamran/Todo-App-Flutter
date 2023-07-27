@@ -1,12 +1,18 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class FormWithContainer extends StatefulWidget {
+  const FormWithContainer({super.key});
+
   @override
-  _FormWithContainerState createState() => _FormWithContainerState();
+  _FormWithContainerState createState() {
+    return _FormWithContainerState();
+  }
 }
 
 class _FormWithContainerState extends State<FormWithContainer> {
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
   bool _isFormFieldVisible = false;
 
   @override
@@ -17,7 +23,7 @@ class _FormWithContainerState extends State<FormWithContainer> {
         width: double.infinity,
         color: Colors.amber,
         padding: const EdgeInsets.all(16.0),
-        margin: EdgeInsets.all(30),
+        margin: const EdgeInsets.all(30),
         child: Column(
           children: [
             GestureDetector(
@@ -34,17 +40,17 @@ class _FormWithContainerState extends State<FormWithContainer> {
                 width: 200,
                 height: 50,
                 color: Colors.blue,
-                child: Center(
+                child: const Center(
                   child: Text('Tap to Show Form Field'),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Visibility(
               visible: _isFormFieldVisible,
               child: TextFormField(
                 focusNode: _focusNode,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Enter your text',
                   border: OutlineInputBorder(),
                 ),
@@ -58,7 +64,7 @@ class _FormWithContainerState extends State<FormWithContainer> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: FormWithContainer(),
   ));
 }

@@ -1,13 +1,12 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../services/data_writer.dart';
+
 class OverlayContent extends StatelessWidget {
-  final VoidCallback onSubmit;
-
-  OverlayContent({required this.onSubmit});
-
+  OverlayContent({
+    super.key,
+  });
+  final TextEditingController _textFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -21,6 +20,7 @@ class OverlayContent extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
+                  controller: _textFieldController,
                   decoration: const InputDecoration(
                     labelText: 'Enter your text',
                     border: OutlineInputBorder(),
@@ -28,8 +28,13 @@ class OverlayContent extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: onSubmit,
-                  child: Text('Submit'),
+                  onPressed: () async {
+                    DataWriter dataWriter = DataWriter(
+                        hasCompleted: false,
+                        taskContent: _textFieldController.text);
+                    await dataWriter.create();
+                  },
+                  child: const Text('Submit'),
                 ),
               ],
             ),
