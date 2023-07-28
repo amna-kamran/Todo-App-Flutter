@@ -29,6 +29,7 @@ class OverlayContent extends StatelessWidget {
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () async {
+                    //have to check if the id already exists, if it doesnt then datawriter will get called otherwise dataupdate will be called
                     DataWriter dataWriter = DataWriter(
                         hasCompleted: false,
                         taskContent: _textFieldController.text);
