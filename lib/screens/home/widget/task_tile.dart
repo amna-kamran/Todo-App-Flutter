@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../Themes/fi_as3_amna_colors.dart';
-import '../../../constants/fi_as3_amna_spaces.dart';
-import '../../../utils/fi_as3_amna_assets.dart';
+import '../../../Themes/colors.dart';
+import '../../../constants/spaces.dart';
+import '../../../utils/assets.dart';
 
 class FiAs3AmnaTaskTile extends StatefulWidget {
   final String text;

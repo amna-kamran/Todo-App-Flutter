@@ -62,9 +62,3 @@ class _FormWithContainerState extends State<FormWithContainer> {
     );
   }
 }
-
-void main() {
-  runApp(const MaterialApp(
-    home: FormWithContainer(),
-  ));
-}

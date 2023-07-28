@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/home/widget/fi_as3_amna_task_tile.dart';
 import 'package:todo_app/screens/home/widget/overlay_widget.dart';
 import 'package:todo_app/screens/home/widget/scroll_search_bar.dart';
-import 'package:todo_app/services/data_writer.dart';
+import 'package:todo_app/services/data_reader.dart';
 
-import '../../Themes/fi_as3_amna_colors.dart';
+import '../../Themes/colors.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,28 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> dynamicWidgets = [
-    const FiAs3AmnaTaskTile(
-      text: "1243",
-    ),
-    const FiAs3AmnaTaskTile(
-      text: "22222",
-    ),
-    const FiAs3AmnaTaskTile(
-      text: "amna",
-    ),
-  ];
-
-  void addNewTile() {
-    setState(() {
-      dynamicWidgets.add(
-        const FiAs3AmnaTaskTile(
-          text: "ddd",
-        ),
-      );
-    });
-  }
-
   OverlayEntry? overlayEntry;
 
   void showOverlay() {
@@ -82,12 +59,13 @@ class _HomeState extends State<Home> {
         ),
       ),
       backgroundColor: CustomColors.backgroundColor,
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: SafeArea(
           child: Column(children: [
-            const SearchBarWidget(),
-            Column(
-              children: dynamicWidgets,
+            SearchBarWidget(),
+            SizedBox(
+              height: 750,
+              child: DataReader(),
             ),
           ]),
         ),

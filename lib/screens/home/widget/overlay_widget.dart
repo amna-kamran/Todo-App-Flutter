@@ -1,8 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-
-import '../../../services/data_writer.dart';
 import 'overlay_content.dart';
 
 class OverlayEntryWidget extends StatefulWidget {
