@@ -35,46 +35,52 @@ class OverlayContentState extends State<OverlayContent> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Card(
-          color: const Color.fromARGB(255, 36, 34, 34),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              right: 10,
-              left: 10,
-            ),
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: _textFieldController,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter your text',
-                    border: OutlineInputBorder(),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(40),
+          child: Card(
+            color: const Color.fromARGB(255, 36, 34, 34),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 20, right: 20, left: 20, bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextFormField(
+                    style: TextStyle(color: CustomColors.textColor),
+                    controller: _textFieldController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your text',
+                      hintStyle:
+                          TextStyle(color: Color.fromARGB(255, 116, 115, 115)),
+                      border: InputBorder.none,
+                    ),
                   ),
-                ),
-                Spaces.h15,
-                SizedBox(
-                  height: 60,
-                  width: double.infinity,
-                  child: GestureDetector(
+                  Spaces.h15,
+                  GestureDetector(
                     onTap: isTextFieldEmpty ? null : _handleDoneButtonTap,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      alignment: Alignment.centerRight,
-                      height: 30,
-                      width: 70,
-                      child: const Text(
-                        'Done',
-                        style: TextStyle(
-                          color: CustomColors.lightGrey,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                    child: SizedBox(
+                      height: 60,
+                      width: 90,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        alignment: Alignment.centerRight,
+                        height: 30,
+                        width: 70,
+                        child: Text(
+                          'Done',
+                          style: TextStyle(
+                            color: isTextFieldEmpty
+                                ? CustomColors.lightGrey
+                                : CustomColors.yellow,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
