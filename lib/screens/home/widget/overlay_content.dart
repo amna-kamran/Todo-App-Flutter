@@ -6,7 +6,7 @@ import '../../../services/data_writer.dart';
 import 'overlay_manager.dart';
 
 class OverlayContent extends StatefulWidget {
-  OverlayContent({
+  const OverlayContent({
     Key? key,
   }) : super(key: key);
 
