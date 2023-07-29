@@ -106,8 +106,8 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
               },
               child: SvgPicture.asset(
                 Assets.crossSvg,
-                height: 20,
-                width: 20,
+                height: 30,
+                width: 30,
               ),
             ),
           ],

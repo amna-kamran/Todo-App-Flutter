@@ -5,11 +5,31 @@ import 'package:todo_app/constants/spaces.dart';
 import '../../../services/data_writer.dart';
 import 'overlay_manager.dart';
 
-class OverlayContent extends StatelessWidget {
+class OverlayContent extends StatefulWidget {
   OverlayContent({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  OverlayContentState createState() => OverlayContentState();
+}
+
+class OverlayContentState extends State<OverlayContent> {
   final TextEditingController _textFieldController = TextEditingController();
+  bool isTextFieldEmpty = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _textFieldController.addListener(_handleTextFieldChange);
+  }
+
+  void _handleTextFieldChange() {
+    setState(() {
+      isTextFieldEmpty = _textFieldController.text.trim().isEmpty;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -37,13 +57,7 @@ class OverlayContent extends StatelessWidget {
                   height: 60,
                   width: double.infinity,
                   child: GestureDetector(
-                    onTap: () {
-                      DataWriter dataWriter = DataWriter(
-                          hasCompleted: false,
-                          taskContent: _textFieldController.text);
-                      dataWriter.create();
-                      OverlayManager.removeOverlay();
-                    },
+                    onTap: isTextFieldEmpty ? null : _handleDoneButtonTap,
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       alignment: Alignment.centerRight,
@@ -66,5 +80,20 @@ class OverlayContent extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _handleDoneButtonTap() {
+    DataWriter dataWriter = DataWriter(
+      hasCompleted: false,
+      taskContent: _textFieldController.text,
+    );
+    dataWriter.create();
+    OverlayManager.removeOverlay();
+  }
+
+  @override
+  void dispose() {
+    _textFieldController.dispose();
+    super.dispose();
   }
 }
