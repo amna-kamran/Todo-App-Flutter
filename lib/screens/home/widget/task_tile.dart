@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../Themes/colors.dart';
 import '../../../constants/spaces.dart';
+import '../../../services/data_deletion.dart';
 import '../../../services/data_update.dart';
 import '../../../utils/assets.dart';
 
@@ -55,6 +56,7 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
               onTap: () {
@@ -79,20 +81,33 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
             ),
             Spaces.w25,
             Flexible(
-              child: Text(
-                widget.text,
-                style: TextStyle(
-                  decoration: widget.hasCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                  decorationColor: CustomColors.yellow,
-                  decorationThickness: 2.0,
-                  color: widget.hasCompleted
-                      ? CustomColors.lightGrey
-                      : CustomColors.textColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              child: Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  widget.text,
+                  style: TextStyle(
+                    decoration: widget.hasCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                    decorationColor: CustomColors.yellow,
+                    decorationThickness: 2.0,
+                    color: widget.hasCompleted
+                        ? CustomColors.lightGrey
+                        : CustomColors.textColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                deleteData(widget.id);
+              },
+              child: SvgPicture.asset(
+                Assets.crossSvg,
+                height: 20,
+                width: 20,
               ),
             ),
           ],

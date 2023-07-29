@@ -9,6 +9,6 @@ class OverlayManager {
   }
 
   static void removeOverlay() {
-    FormFieldOverlay.remove(storedContext!);
+    ShowOverlay.remove(storedContext!);
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'overlay_manager.dart';
 import 'overlay_widget.dart';
 
-class FormFieldOverlay {
+class ShowOverlay {
   static OverlayEntry? _overlayEntry;
 
   static void show(BuildContext context) {
@@ -12,7 +12,7 @@ class FormFieldOverlay {
         onTap: () {
           OverlayManager.removeOverlay();
         },
-        child: const OverlayEntryWidget(),
+        child: const OverlayWidget(),
       ),
     );
 

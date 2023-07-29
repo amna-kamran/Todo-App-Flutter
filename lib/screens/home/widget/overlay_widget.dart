@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'overlay_content.dart';
 
-class OverlayEntryWidget extends StatefulWidget {
-  const OverlayEntryWidget({
+class OverlayWidget extends StatefulWidget {
+  const OverlayWidget({
     super.key,
   });
 
   @override
-  OverlayEntryWidgetState createState() => OverlayEntryWidgetState();
+  OverlayWidgetState createState() => OverlayWidgetState();
 }
 
-class OverlayEntryWidgetState extends State<OverlayEntryWidget> {
+class OverlayWidgetState extends State<OverlayWidget> {
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
