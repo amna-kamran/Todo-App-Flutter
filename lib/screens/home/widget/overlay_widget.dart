@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'overlay_content.dart';
 
@@ -9,10 +7,10 @@ class OverlayEntryWidget extends StatefulWidget {
   });
 
   @override
-  _OverlayEntryWidgetState createState() => _OverlayEntryWidgetState();
+  OverlayEntryWidgetState createState() => OverlayEntryWidgetState();
 }
 
-class _OverlayEntryWidgetState extends State<OverlayEntryWidget> {
+class OverlayEntryWidgetState extends State<OverlayEntryWidget> {
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
