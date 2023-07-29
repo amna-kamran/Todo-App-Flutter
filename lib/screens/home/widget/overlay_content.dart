@@ -3,6 +3,7 @@ import 'package:todo_app/Themes/colors.dart';
 import 'package:todo_app/constants/spaces.dart';
 
 import '../../../services/data_writer.dart';
+import 'overlay_manager.dart';
 
 class OverlayContent extends StatelessWidget {
   OverlayContent({
@@ -15,7 +16,7 @@ class OverlayContent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
-          color: Color.fromARGB(255, 36, 34, 34),
+          color: const Color.fromARGB(255, 36, 34, 34),
           child: Padding(
             padding: const EdgeInsets.only(
               top: 10,
@@ -32,19 +33,19 @@ class OverlayContent extends StatelessWidget {
                   ),
                 ),
                 Spaces.h15,
-                Container(
+                SizedBox(
                   height: 60,
                   width: double.infinity,
                   child: GestureDetector(
-                    onTap: () async {
-                      //have to check if the id already exists, if it doesnt then datawriter will get called otherwise dataupdate will be called
+                    onTap: () {
                       DataWriter dataWriter = DataWriter(
                           hasCompleted: false,
                           taskContent: _textFieldController.text);
-                      await dataWriter.create();
+                      dataWriter.create();
+                      OverlayManager.removeOverlay();
                     },
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       alignment: Alignment.centerRight,
                       height: 30,
                       width: 70,

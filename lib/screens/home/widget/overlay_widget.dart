@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'overlay_content.dart';
 
 class OverlayEntryWidget extends StatefulWidget {
-  final Function(String) onFormSubmit;
-
-  const OverlayEntryWidget({super.key, required this.onFormSubmit});
+  const OverlayEntryWidget({
+    super.key,
+  });
 
   @override
   _OverlayEntryWidgetState createState() => _OverlayEntryWidgetState();
