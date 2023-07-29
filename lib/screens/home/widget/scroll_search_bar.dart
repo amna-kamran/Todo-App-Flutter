@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/Themes/fi_as3_amna_colors.dart';
-import 'package:todo_app/constants/fi_as3_amna_spaces.dart';
-import 'package:todo_app/utils/fi_as3_amna_assets.dart';
+import 'package:todo_app/Themes/colors.dart';
+import 'package:todo_app/constants/spaces.dart';
+import 'package:todo_app/utils/assets.dart';
 
 class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({super.key});
@@ -18,7 +18,7 @@ class _SearchBarState extends State<SearchBarWidget> {
         margin: const EdgeInsets.only(
           left: 20,
           right: 20,
-          bottom: 30,
+          bottom: 10,
           top: 20,
         ),
         padding: const EdgeInsets.only(left: 25),
@@ -38,7 +38,10 @@ class _SearchBarState extends State<SearchBarWidget> {
             Spaces.w15,
             const Text(
               "Search",
-              style: TextStyle(color: CustomColors.mediumGrey),
+              style: TextStyle(
+                color: CustomColors.mediumGrey,
+                fontSize: 16,
+              ),
             ),
           ],
         ));
