@@ -13,14 +13,18 @@ class DataReader extends StatelessWidget {
       stream: FirebaseFirestore.instance.collection('todos').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasData) {
-          final List<FiAs3AmnaTaskTile> taskTiles =
-              snapshot.data!.docs.map((doc) {
-            final String taskText = doc['taskContent'];
+          final List<FiAs3AmnaTaskTile> taskTiles = snapshot.data!.docs.map(
+            (doc) {
+              final String taskText = doc['taskContent'];
+              final bool hasCompleted = doc['hasCompleted'];
 
-            return FiAs3AmnaTaskTile(
-              text: taskText,
-            );
-          }).toList();
+              return FiAs3AmnaTaskTile(
+                hasCompleted: hasCompleted,
+                text: taskText,
+                id: doc.id,
+              );
+            },
+          ).toList();
 
           return ListView.builder(
             itemCount: taskTiles.length,

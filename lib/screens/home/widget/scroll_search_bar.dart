@@ -38,7 +38,10 @@ class _SearchBarState extends State<SearchBarWidget> {
             Spaces.w15,
             const Text(
               "Search",
-              style: TextStyle(color: CustomColors.mediumGrey),
+              style: TextStyle(
+                color: CustomColors.mediumGrey,
+                fontSize: 16,
+              ),
             ),
           ],
         ));
