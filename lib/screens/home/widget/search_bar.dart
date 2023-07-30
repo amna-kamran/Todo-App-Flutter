@@ -5,13 +5,16 @@ import 'package:todo_app/constants/spaces.dart';
 import 'package:todo_app/utils/assets.dart';
 
 class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({super.key});
+  final FocusNode focusNode;
+
+  const SearchBarWidget({required this.focusNode, Key? key}) : super(key: key);
 
   @override
   State<SearchBarWidget> createState() => _SearchBarState();
 }
 
 class _SearchBarState extends State<SearchBarWidget> {
+  final FocusNode _searchFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,13 +39,24 @@ class _SearchBarState extends State<SearchBarWidget> {
               width: 20,
             ),
             Spaces.w15,
-            const Text(
-              "Search",
-              style: TextStyle(
-                color: CustomColors.mediumGrey,
-                fontSize: 16,
+            Expanded(
+              child: TextField(
+                onChanged: (value) {},
+                focusNode: _searchFocusNode,
+                style: const TextStyle(
+                  color: CustomColors.mediumGrey,
+                  fontSize: 16,
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Search',
+                  hintStyle: TextStyle(
+                    color: CustomColors.mediumGrey,
+                    fontSize: 16,
+                  ),
+                ),
               ),
-            ),
+            )
           ],
         ));
   }
