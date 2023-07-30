@@ -1,52 +1,51 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app/screens/home/widget/show_overlay.dart';
 
-import '../../../themes/colors.dart';
 import '../../../constants/spaces.dart';
 import '../../../services/data_deletion.dart';
 import '../../../services/data_update.dart';
+import '../../../themes/colors.dart';
 import '../../../utils/assets.dart';
 import 'overlay_manager.dart';
 
-class TaskTile extends StatefulWidget {
+class TaskTile extends StatelessWidget {
   final String text;
-  String id;
-  bool hasCompleted;
-  TaskTile({
+  final String id;
+  final bool hasCompleted;
+
+  const TaskTile({
     Key? key,
     required this.text,
     this.id = "",
     required this.hasCompleted,
   }) : super(key: key);
 
-  @override
-  State<TaskTile> createState() => _TaskTileState();
-}
+  void _handleCheckBoxTap(BuildContext context) {
+    updateCompletedField(id, !hasCompleted);
+  }
 
-class _TaskTileState extends State<TaskTile> {
+  void _handleDeleteTap() {
+    deleteData(id);
+  }
+
+  void _handleTileTap(BuildContext context) {
+    OverlayManager.storeContext(context);
+    ShowOverlay.show(
+      context,
+      initialTaskText: text,
+      isEditing: true,
+      id: id,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        OverlayManager.storeContext(context);
-        ShowOverlay.show(
-          context,
-          initialTaskText: widget.text,
-          isEditing: true,
-          id: widget.id,
-        );
-      },
+      onTap: () => _handleTileTap(context),
       child: Container(
-        margin: const EdgeInsets.only(
-          left: 20,
-          right: 20,
-          bottom: 10,
-        ),
-        padding:
-            const EdgeInsets.only(left: 25, top: 30, bottom: 30, right: 25),
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         decoration: BoxDecoration(
           color: CustomColors.tileColor,
           borderRadius: BorderRadius.circular(20),
@@ -56,14 +55,9 @@ class _TaskTileState extends State<TaskTile> {
           children: [
             InkWell(
               onTap: () {
-                setState(
-                  () {
-                    widget.hasCompleted = !widget.hasCompleted;
-                  },
-                );
-                updateCompletedField(widget.id, widget.hasCompleted);
+                _handleCheckBoxTap(context);
               },
-              child: widget.hasCompleted
+              child: hasCompleted
                   ? SvgPicture.asset(
                       Assets.checkBoxYellowSvg,
                       height: 20,
@@ -80,14 +74,14 @@ class _TaskTileState extends State<TaskTile> {
               child: Container(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  widget.text,
+                  text,
                   style: TextStyle(
-                    decoration: widget.hasCompleted
+                    decoration: hasCompleted
                         ? TextDecoration.lineThrough
                         : TextDecoration.none,
                     decorationColor: CustomColors.yellow,
                     decorationThickness: 2.0,
-                    color: widget.hasCompleted
+                    color: hasCompleted
                         ? CustomColors.lightGrey
                         : CustomColors.textColor,
                     fontSize: 18,
@@ -97,9 +91,7 @@ class _TaskTileState extends State<TaskTile> {
               ),
             ),
             InkWell(
-              onTap: () {
-                deleteData(widget.id);
-              },
+              onTap: _handleDeleteTap,
               child: SvgPicture.asset(
                 Assets.crossSvg,
                 height: 30,
