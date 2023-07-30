@@ -8,6 +8,17 @@ Future<void> updateCompletedField(id, hasCompleted) async {
       .update({'hasCompleted': hasCompleted})
       .then((value) => debugPrint("bool updated"))
       .catchError(
-        (error) => debugPrint("Failed to update user: $error"),
+        (error) => debugPrint("Failed to update bool: $error"),
+      );
+}
+
+Future<void> updateTaskContent(id, taskContent) async {
+  return FirebaseFirestore.instance
+      .collection('todos')
+      .doc(id)
+      .update({'taskContent': taskContent})
+      .then((value) => debugPrint("task updated"))
+      .catchError(
+        (error) => debugPrint("Failed to update task: $error"),
       );
 }

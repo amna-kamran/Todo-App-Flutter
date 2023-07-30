@@ -4,6 +4,7 @@ import 'package:todo_app/Themes/colors.dart';
 import 'package:todo_app/constants/spaces.dart';
 import 'package:todo_app/utils/assets.dart';
 
+import '../../../services/data_update.dart';
 import '../../../services/data_writer.dart';
 import 'overlay_manager.dart';
 
@@ -82,7 +83,9 @@ class OverlayContentState extends State<OverlayContent> {
                   ),
                   Spaces.h15,
                   GestureDetector(
-                    onTap: isTextFieldEmpty ? null : _handleDoneButtonTap,
+                    onTap: () {
+                      widget.isEditing ? taskUpdation() : newTaskCreation();
+                    },
                     child: SizedBox(
                       height: 60,
                       width: 90,
@@ -113,12 +116,21 @@ class OverlayContentState extends State<OverlayContent> {
     );
   }
 
-  void _handleDoneButtonTap() {
+  void newTaskCreation() {
     DataWriter dataWriter = DataWriter(
       hasCompleted: false,
       taskContent: _textFieldController.text,
     );
     dataWriter.create();
+    OverlayManager.removeOverlay();
+  }
+
+  void taskUpdation() {
+    updateTaskContent(
+      widget.id,
+      _textFieldController.text,
+    );
+
     OverlayManager.removeOverlay();
   }
 
