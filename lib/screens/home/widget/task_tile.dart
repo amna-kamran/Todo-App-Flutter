@@ -2,12 +2,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:todo_app/screens/home/widget/show_overlay.dart';
 
 import '../../../Themes/colors.dart';
 import '../../../constants/spaces.dart';
 import '../../../services/data_deletion.dart';
 import '../../../services/data_update.dart';
 import '../../../utils/assets.dart';
+import 'overlay_manager.dart';
 
 class FiAs3AmnaTaskTile extends StatefulWidget {
   final String text;
@@ -28,20 +30,14 @@ class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        await FirebaseFirestore.instance
-            .collection('todos')
-            .doc(widget.id)
-            .get()
-            .then(
-          (DocumentSnapshot documentSnapshot) {
-            if (documentSnapshot.exists) {
-              debugPrint(documentSnapshot['taskContent']);
-            }
-          },
+      onTap: () {
+        OverlayManager.storeContext(context);
+        ShowOverlay.show(
+          context,
+          initialTaskText: widget.text,
+          isEditing: true,
+          id: widget.id,
         );
-
-        //document snapshot and id is printed and overlay opens
       },
       child: Container(
         margin: const EdgeInsets.only(

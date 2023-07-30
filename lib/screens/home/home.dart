@@ -28,7 +28,10 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.only(bottom: 20, right: 15),
           child: FloatingActionButton(
             onPressed: () {
-              ShowOverlay.show(context);
+              ShowOverlay.show(
+                context,
+                initialTaskText: '',
+              );
               OverlayManager.storeContext(context);
             },
             backgroundColor: CustomColors.yellow,

@@ -6,13 +6,22 @@ import 'overlay_widget.dart';
 class ShowOverlay {
   static OverlayEntry? _overlayEntry;
 
-  static void show(BuildContext context) {
+  static void show(
+    BuildContext context, {
+    required String initialTaskText,
+    final bool isEditing = false,
+    final String id = "",
+  }) {
     _overlayEntry = OverlayEntry(
       builder: (context) => GestureDetector(
         onTap: () {
           OverlayManager.removeOverlay();
         },
-        child: const OverlayWidget(),
+        child: OverlayWidget(
+          initialTaskText: initialTaskText,
+          isEditing: isEditing,
+          id: id,
+        ),
       ),
     );
 

@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:todo_app/Themes/colors.dart';
 import 'package:todo_app/constants/spaces.dart';
+import 'package:todo_app/utils/assets.dart';
 
 import '../../../services/data_writer.dart';
 import 'overlay_manager.dart';
 
 class OverlayContent extends StatefulWidget {
+  final String initialTaskText;
+
+  final bool isEditing;
+  final String id;
+
   const OverlayContent({
     Key? key,
+    this.initialTaskText = "",
+    this.isEditing = false,
+    this.id = "",
   }) : super(key: key);
 
   @override
@@ -21,6 +31,13 @@ class OverlayContentState extends State<OverlayContent> {
   @override
   void initState() {
     super.initState();
+
+    if (widget.isEditing) {
+      _textFieldController.text = widget.initialTaskText;
+    } else {
+      _textFieldController.text = '';
+    }
+
     _textFieldController.addListener(_handleTextFieldChange);
   }
 
@@ -40,19 +57,27 @@ class OverlayContentState extends State<OverlayContent> {
           child: Card(
             color: const Color.fromARGB(255, 36, 34, 34),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 20, right: 20, left: 20, bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                // Use Row instead of Column
                 children: [
-                  TextFormField(
-                    style: const TextStyle(color: CustomColors.textColor),
-                    controller: _textFieldController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your text',
-                      hintStyle:
-                          TextStyle(color: Color.fromARGB(255, 116, 115, 115)),
-                      border: InputBorder.none,
+                  SvgPicture.asset(
+                    Assets.boxSvg,
+                    height: 25,
+                    width: 25,
+                  ),
+                  Spaces.w20,
+                  Expanded(
+                    child: TextFormField(
+                      style: const TextStyle(color: CustomColors.textColor),
+                      controller: _textFieldController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your text',
+                        hintStyle: TextStyle(
+                          color: Color.fromARGB(255, 116, 115, 115),
+                        ),
+                        border: InputBorder.none,
+                      ),
                     ),
                   ),
                   Spaces.h15,
