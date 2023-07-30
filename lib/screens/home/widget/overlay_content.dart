@@ -46,7 +46,7 @@ class OverlayContentState extends State<OverlayContent> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   TextFormField(
-                    style: TextStyle(color: CustomColors.textColor),
+                    style: const TextStyle(color: CustomColors.textColor),
                     controller: _textFieldController,
                     decoration: const InputDecoration(
                       hintText: 'Enter your text',
