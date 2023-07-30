@@ -8,7 +8,7 @@ class ShowOverlay {
 
   static void show(
     BuildContext context, {
-    required String initialTaskText,
+    final String initialTaskText = "",
     final bool isEditing = false,
     final String id = "",
   }) {

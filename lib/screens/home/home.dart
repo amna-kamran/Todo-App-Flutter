@@ -5,7 +5,7 @@ import 'package:todo_app/screens/home/widget/search_bar.dart';
 import 'package:todo_app/screens/home/widget/show_overlay.dart';
 import 'package:todo_app/services/data_reader.dart';
 
-import '../../themes/colors.dart';
+import '../../Themes/colors.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

@@ -6,12 +6,12 @@ class OverlayWidget extends StatefulWidget {
   final bool isEditing;
   final String id;
 
-  const OverlayWidget({
-    super.key,
+  OverlayWidget({
+    Key? key,
     this.initialTaskText = "",
     this.isEditing = false,
     this.id = "",
-  });
+  }) : super(key: key);
 
   @override
   OverlayWidgetState createState() => OverlayWidgetState();

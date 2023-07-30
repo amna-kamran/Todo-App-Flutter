@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app/screens/home/widget/show_overlay.dart';
 
@@ -41,8 +42,9 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _handleTileTap(context),
+    return Bounce(
+      onPressed: () => _handleTileTap(context),
+      duration: const Duration(milliseconds: 100),
       child: Container(
         margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),

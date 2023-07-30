@@ -10,7 +10,6 @@ import 'overlay_manager.dart';
 
 class OverlayContent extends StatefulWidget {
   final String initialTaskText;
-
   final bool isEditing;
   final String id;
 
@@ -33,11 +32,7 @@ class OverlayContentState extends State<OverlayContent> {
   void initState() {
     super.initState();
 
-    if (widget.isEditing) {
-      _textFieldController.text = widget.initialTaskText;
-    } else {
-      _textFieldController.text = '';
-    }
+    _textFieldController.text = widget.isEditing ? widget.initialTaskText : '';
 
     _textFieldController.addListener(_handleTextFieldChange);
   }
