@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/Themes/colors.dart';
+import 'package:todo_app/themes/colors.dart';
 import 'package:todo_app/constants/spaces.dart';
 import 'package:todo_app/utils/assets.dart';
 

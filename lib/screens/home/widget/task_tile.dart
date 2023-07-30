@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app/screens/home/widget/show_overlay.dart';
 
-import '../../../Themes/colors.dart';
+import '../../../themes/colors.dart';
 import '../../../constants/spaces.dart';
 import '../../../services/data_deletion.dart';
 import '../../../services/data_update.dart';
 import '../../../utils/assets.dart';
 import 'overlay_manager.dart';
 
-class FiAs3AmnaTaskTile extends StatefulWidget {
+class TaskTile extends StatefulWidget {
   final String text;
   String id;
   bool hasCompleted;
-  FiAs3AmnaTaskTile({
+  TaskTile({
     Key? key,
     required this.text,
     this.id = "",
@@ -23,10 +23,10 @@ class FiAs3AmnaTaskTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<FiAs3AmnaTaskTile> createState() => _FiAs3AmnaTaskTileState();
+  State<TaskTile> createState() => _TaskTileState();
 }
 
-class _FiAs3AmnaTaskTileState extends State<FiAs3AmnaTaskTile> {
+class _TaskTileState extends State<TaskTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../screens/home/widget/task_tile.dart';
 
 class DataReader extends StatelessWidget {
-  const DataReader({super.key});
+  const DataReader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +14,22 @@ class DataReader extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         try {
           if (snapshot.hasData) {
-            final List<FiAs3AmnaTaskTile> taskTiles = snapshot.data!.docs.map(
-              (doc) {
-                final String taskText = doc['taskContent'];
-                final bool hasCompleted = doc['hasCompleted'];
+            final List<TaskTile> taskTiles = snapshot.data!.docs
+                .map(
+                  (doc) {
+                    final String taskText = doc['taskContent'];
+                    final bool hasCompleted = doc['hasCompleted'];
 
-                return FiAs3AmnaTaskTile(
-                  hasCompleted: hasCompleted,
-                  text: taskText,
-                  id: doc.id,
-                );
-              },
-            ).toList();
+                    return TaskTile(
+                      hasCompleted: hasCompleted,
+                      text: taskText,
+                      id: doc.id,
+                    );
+                  },
+                )
+                .toList()
+                .reversed
+                .toList();
 
             return ListView.builder(
               itemCount: taskTiles.length,

@@ -4,16 +4,6 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -66,7 +56,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '262425652979',
     projectId: 'todo-app-48914',
     storageBucket: 'todo-app-48914.appspot.com',
-    iosClientId: '262425652979-uktle2eun31m73m25tvfn9afdn1f28bo.apps.googleusercontent.com',
+    iosClientId:
+        '262425652979-uktle2eun31m73m25tvfn9afdn1f28bo.apps.googleusercontent.com',
     iosBundleId: 'com.example.todoApp',
   );
 
@@ -76,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '262425652979',
     projectId: 'todo-app-48914',
     storageBucket: 'todo-app-48914.appspot.com',
-    iosClientId: '262425652979-or5gsktbjkdde7ng85h9j3umdeo0u33d.apps.googleusercontent.com',
+    iosClientId:
+        '262425652979-or5gsktbjkdde7ng85h9j3umdeo0u33d.apps.googleusercontent.com',
     iosBundleId: 'com.example.todoApp.RunnerTests',
   );
 }
