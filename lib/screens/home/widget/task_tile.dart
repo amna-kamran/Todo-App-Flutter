@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/screens/home/widget/show_overlay.dart';
+import 'package:todo_app/utils/show_overlay.dart';
 
 import '../../../constants/spaces.dart';
 import '../../../services/data_deletion.dart';
 import '../../../services/data_update.dart';
 import '../../../themes/colors.dart';
-import '../../../utils/assets.dart';
-import 'overlay_manager.dart';
+import '../../../constants/assets.dart';
+import '../../../utils/overlay_manager.dart';
 
 class TaskTile extends StatelessWidget {
   final String text;

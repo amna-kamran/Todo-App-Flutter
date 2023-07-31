@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app/themes/colors.dart';
 import 'package:todo_app/constants/spaces.dart';
-import 'package:todo_app/utils/assets.dart';
+import 'package:todo_app/constants/assets.dart';
 
 import '../../../services/data_update.dart';
 import '../../../services/data_writer.dart';
-import 'overlay_manager.dart';
+import '../../../utils/overlay_manager.dart';
 
 class OverlayContent extends StatefulWidget {
   final String initialTaskText;

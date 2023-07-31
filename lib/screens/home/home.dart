@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/home/widget/overlay_manager.dart';
+import 'package:todo_app/utils/overlay_manager.dart';
 
-import 'package:todo_app/screens/home/widget/search_bar.dart';
-import 'package:todo_app/screens/home/widget/show_overlay.dart';
+import 'package:todo_app/utils/show_overlay.dart';
 import 'package:todo_app/services/data_reader.dart';
 
-import '../../Themes/colors.dart';
+import '../../themes/colors.dart';
+import 'widget/search_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

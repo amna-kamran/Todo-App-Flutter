@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'overlay_manager.dart';
-import 'overlay_widget.dart';
+import '../screens/home/widget/overlay_widget.dart';
 
 class ShowOverlay {
   static OverlayEntry? _overlayEntry;
