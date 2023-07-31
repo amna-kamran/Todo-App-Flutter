@@ -55,7 +55,6 @@ class OverlayContentState extends State<OverlayContent> {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
-                // Use Row instead of Column
                 children: [
                   SvgPicture.asset(
                     Assets.boxSvg,
