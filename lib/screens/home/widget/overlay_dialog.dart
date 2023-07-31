@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:todo_app/services/todo_provider.dart';
+
 import 'package:todo_app/themes/colors.dart';
 import 'package:todo_app/constants/spaces.dart';
 import 'package:todo_app/constants/assets.dart';
-
-import '../../../services/data_update.dart';
-import '../../../services/data_writer.dart';
 import '../../../utils/overlay_manager.dart';
 
 class OverlayDialog extends StatefulWidget {
@@ -26,6 +25,7 @@ class OverlayDialog extends StatefulWidget {
 
 class OverlayDialogState extends State<OverlayDialog> {
   final TextEditingController _textFieldController = TextEditingController();
+  final TodoProvider todoMethods = TodoProvider();
   bool isTextFieldEmpty = true;
 
   @override
@@ -70,7 +70,7 @@ class OverlayDialogState extends State<OverlayDialog> {
                   Spaces.w20,
                   Expanded(
                     child: TextFormField(
-                      style: const TextStyle(color: CustomColors.textColor),
+                      style: const TextStyle(color: CustomColors.white),
                       controller: _textFieldController,
                       decoration: const InputDecoration(
                         hintText: 'Enter your text',
@@ -117,19 +117,17 @@ class OverlayDialogState extends State<OverlayDialog> {
   }
 
   void newTaskCreation() {
-    DataWriter dataWriter = DataWriter(
-      hasCompleted: false,
-      taskContent: _textFieldController.text,
-    );
-    dataWriter.create();
+    todoMethods.create({
+      'hasCompleted': false,
+      'taskContent': _textFieldController.text,
+    });
     OverlayManager.removeOverlay();
   }
 
   void taskUpdation() {
-    updateTaskContent(
-      widget.id,
-      _textFieldController.text,
-    );
+    todoMethods.updateTask(widget.id, {
+      'taskContent': _textFieldController.text,
+    });
 
     OverlayManager.removeOverlay();
   }

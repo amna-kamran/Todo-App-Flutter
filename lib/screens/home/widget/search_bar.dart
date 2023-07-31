@@ -28,7 +28,7 @@ class _SearchBarState extends State<SearchBarWidget> {
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: CustomColors.tileColor,
+          color: CustomColors.accent,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(
@@ -56,7 +56,7 @@ class _SearchBarState extends State<SearchBarWidget> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ));
   }
