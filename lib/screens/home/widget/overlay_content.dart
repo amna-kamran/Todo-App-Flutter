@@ -44,6 +44,12 @@ class OverlayContentState extends State<OverlayContent> {
   }
 
   @override
+  void dispose() {
+    _textFieldController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
@@ -126,11 +132,5 @@ class OverlayContentState extends State<OverlayContent> {
     );
 
     OverlayManager.removeOverlay();
-  }
-
-  @override
-  void dispose() {
-    _textFieldController.dispose();
-    super.dispose();
   }
 }
