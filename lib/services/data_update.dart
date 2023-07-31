@@ -13,7 +13,7 @@ Future<void> updateCompletedField(id, hasCompleted) async {
 }
 
 Future<void> updateTaskContent(id, taskContent) async {
-  return FirebaseFirestore.instance
+  return await FirebaseFirestore.instance
       .collection('todos')
       .doc(id)
       .update({'taskContent': taskContent})
