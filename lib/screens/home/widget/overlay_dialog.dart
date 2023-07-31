@@ -8,12 +8,12 @@ import '../../../services/data_update.dart';
 import '../../../services/data_writer.dart';
 import '../../../utils/overlay_manager.dart';
 
-class OverlayContent extends StatefulWidget {
+class OverlayDialog extends StatefulWidget {
   final String initialTaskText;
   final bool isEditing;
   final String id;
 
-  const OverlayContent({
+  const OverlayDialog({
     Key? key,
     this.initialTaskText = "",
     this.isEditing = false,
@@ -21,10 +21,10 @@ class OverlayContent extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  OverlayContentState createState() => OverlayContentState();
+  OverlayDialogState createState() => OverlayDialogState();
 }
 
-class OverlayContentState extends State<OverlayContent> {
+class OverlayDialogState extends State<OverlayDialog> {
   final TextEditingController _textFieldController = TextEditingController();
   bool isTextFieldEmpty = true;
 

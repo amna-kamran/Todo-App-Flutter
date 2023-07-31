@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'overlay_content.dart';
+import 'overlay_dialog.dart';
 
 class OverlayWidget extends StatelessWidget {
   final String initialTaskText;
@@ -19,7 +19,7 @@ class OverlayWidget extends StatelessWidget {
       color: Colors.black.withOpacity(0.6),
       alignment: Alignment.center,
       child: Center(
-        child: OverlayContent(
+        child: OverlayDialog(
           isEditing: isEditing,
           initialTaskText: initialTaskText,
           id: id,
