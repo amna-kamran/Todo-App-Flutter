@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
           child: SafeArea(
             child: Column(children: [
               SearchBarWidget(focusNode: FocusNode()),
-              const SizedBox(
+              SizedBox(
                 height: 750,
                 child: DataReader(),
               ),

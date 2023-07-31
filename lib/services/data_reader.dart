@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:todo_app/constants/spaces.dart';
+import 'package:todo_app/themes/colors.dart';
 
+import '../constants/assets.dart';
 import '../screens/home/widget/task_tile.dart';
 
 class DataReader extends StatelessWidget {
@@ -31,6 +34,27 @@ class DataReader extends StatelessWidget {
                 .reversed
                 .toList();
 
+            if (taskTiles.isEmpty) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    Assets.notesSvg,
+                    color: CustomColors.tileColor,
+                  ),
+                  Spaces.h20,
+                  const Text(
+                    'No tasks here yet',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 58, 58, 58),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              );
+            }
+
             return ListView.builder(
               itemCount: taskTiles.length,
               itemBuilder: (BuildContext context, int index) {
@@ -39,7 +63,7 @@ class DataReader extends StatelessWidget {
             );
           } else {
             return const Center(
-              child: Text('No data available'),
+              child: CircularProgressIndicator(),
             );
           }
         } catch (e) {
