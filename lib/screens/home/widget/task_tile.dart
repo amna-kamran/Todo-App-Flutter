@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'package:todo_app/services/todo_provider.dart';
 import 'package:todo_app/utils/show_overlay.dart';
 
-import '../../../constants/spaces.dart';
-import '../../../services/data_deletion.dart';
-import '../../../services/data_update.dart';
-import '../../../themes/colors.dart';
 import '../../../constants/assets.dart';
+import '../../../constants/spaces.dart';
+import '../../../themes/colors.dart';
 import '../../../utils/overlay_manager.dart';
 
 class TaskTile extends StatelessWidget {
@@ -15,19 +15,21 @@ class TaskTile extends StatelessWidget {
   final String id;
   final bool hasCompleted;
 
-  const TaskTile({
+  TaskTile({
     Key? key,
     required this.text,
     this.id = "",
     required this.hasCompleted,
   }) : super(key: key);
 
-  void _handleCheckBoxTap(BuildContext context) {
-    updateCompletedField(id, !hasCompleted);
+  final TodoProvider todoMethods = TodoProvider();
+
+  void _handleCheckBoxTap() {
+    todoMethods.updateTask(id, {'hasCompleted': !hasCompleted});
   }
 
   void _handleDeleteTap() {
-    deleteData(id);
+    todoMethods.deleteData(id);
   }
 
   void _handleTileTap(BuildContext context) {
@@ -47,17 +49,17 @@ class TaskTile extends StatelessWidget {
       duration: const Duration(milliseconds: 100),
       child: Container(
         margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
         decoration: BoxDecoration(
-          color: CustomColors.tileColor,
+          color: CustomColors.accent,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
               onTap: () {
-                _handleCheckBoxTap(context);
+                _handleCheckBoxTap();
               },
               child: hasCompleted
                   ? SvgPicture.asset(
@@ -85,21 +87,20 @@ class TaskTile extends StatelessWidget {
                     decorationThickness: 2.0,
                     color: hasCompleted
                         ? CustomColors.lightGrey
-                        : CustomColors.textColor,
+                        : CustomColors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            InkWell(
-              onTap: _handleDeleteTap,
-              child: SvgPicture.asset(
-                Assets.crossSvg,
-                height: 30,
-                width: 30,
-              ),
-            ),
+            IconButton(
+                onPressed: _handleDeleteTap,
+                icon: const Icon(
+                  Icons.cancel,
+                  color: CustomColors.darkGrey,
+                  size: 22,
+                ))
           ],
         ),
       ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/screens/home/widget/display_task_list.dart';
+import 'package:todo_app/services/todo_provider.dart';
 import 'package:todo_app/utils/overlay_manager.dart';
-
 import 'package:todo_app/utils/show_overlay.dart';
-import 'package:todo_app/services/data_reader.dart';
 
 import '../../themes/colors.dart';
 import 'widget/search_bar.dart';
@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
               SearchBarWidget(focusNode: FocusNode()),
               SizedBox(
                 height: 750,
-                child: DataReader(),
+                child: displayTaskList(),
               ),
             ]),
           ),
