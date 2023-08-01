@@ -47,14 +47,19 @@ class ShowDialog {
               GestureDetector(
                 onTap: () {
                   isEditing
-                      ? todoMethods.updateTask(id, {
-                          'taskContent': textFieldController.text,
-                        })
-                      : todoMethods.create({
-                          'hasCompleted': false,
-                          'taskContent': textFieldController.text,
-                          'user_id': AuthProvider.getCurrentUserId(),
-                        });
+                      ? todoMethods.updateTask(
+                          id,
+                          {
+                            'taskContent': textFieldController.text,
+                          },
+                        )
+                      : todoMethods.create(
+                          {
+                            'hasCompleted': false,
+                            'taskContent': textFieldController.text,
+                            'user_id': AuthProvider.getCurrentUserId(),
+                          },
+                        );
 
                   Navigator.pop(context);
                 },

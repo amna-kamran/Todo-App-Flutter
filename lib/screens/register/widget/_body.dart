@@ -48,19 +48,27 @@ class __BodyState extends State<_Body> {
                           if (!isValid) return;
 
                           final data = form.value;
-                          setState(() {
-                            isLoading = true;
-                          });
+                          setState(
+                            () {
+                              isLoading = true;
+                            },
+                          );
 
                           await AuthProvider.register(
                             data['password'],
                             data['email'],
                             data['name'],
                           );
-
-                          setState(() {
-                            isLoading = false;
-                          });
+                          await AuthProvider.login(
+                            data['email'],
+                            data['password'],
+                          );
+                          setState(
+                            () {
+                              isLoading = false;
+                            },
+                          );
+                          Navigator.pop(context);
                         },
                         child: const Text("Register")),
               ],

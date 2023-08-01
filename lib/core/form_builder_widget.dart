@@ -21,7 +21,7 @@ Widget buildFormBuilderTextField(
       [
         FormBuilderValidators.required(),
         if (obscureText) FormBuilderValidators.minLength(6),
-        if (!obscureText) FormBuilderValidators.email(),
+        if (!obscureText && name == "email") FormBuilderValidators.email(),
       ],
     ),
   );

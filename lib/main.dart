@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/home.dart';
 import 'package:todo_app/screens/login/login.dart';
-import 'package:todo_app/screens/register/register.dart';
 
 import 'firebase_options.dart';
 

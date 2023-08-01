@@ -48,25 +48,30 @@ class _BodyState extends State<_Body> {
 
                         final data = form.value;
 
-                        setState(() {
-                          isLoading = true;
-                        });
+                        setState(
+                          () {
+                            isLoading = true;
+                          },
+                        );
 
                         await AuthProvider.login(
                           data['email'],
                           data['password'],
                         );
 
-                        setState(() {
-                          isLoading = false;
-                        });
+                        setState(
+                          () {
+                            isLoading = false;
+                          },
+                        );
                       },
                       child: const Text(
                         "Login",
                         style: TextStyle(
                           fontSize: 16,
                         ),
-                      )),
+                      ),
+                    ),
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
