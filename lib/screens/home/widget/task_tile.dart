@@ -3,12 +3,11 @@ import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:todo_app/services/todo_provider.dart';
-import 'package:todo_app/utils/show_overlay.dart';
+import 'package:todo_app/utils/show_dialog.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/spaces.dart';
 import '../../../themes/colors.dart';
-import '../../../utils/overlay_manager.dart';
 
 class TaskTile extends StatelessWidget {
   final String text;
@@ -32,20 +31,11 @@ class TaskTile extends StatelessWidget {
     todoMethods.deleteData(id);
   }
 
-  void _handleTileTap(BuildContext context) {
-    OverlayManager.storeContext(context);
-    ShowOverlay.show(
-      context,
-      initialTaskText: text,
-      isEditing: true,
-      id: id,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Bounce(
-      onPressed: () => _handleTileTap(context),
+      onPressed: () => ShowDialog.show(context,
+          initialTaskText: text, id: id, isEditing: true),
       duration: const Duration(milliseconds: 100),
       child: Container(
         margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),

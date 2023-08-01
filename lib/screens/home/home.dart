@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/widget/display_task_list.dart';
-import 'package:todo_app/services/todo_provider.dart';
-import 'package:todo_app/utils/overlay_manager.dart';
-import 'package:todo_app/utils/show_overlay.dart';
+
+import 'package:todo_app/utils/show_dialog.dart';
 
 import '../../themes/colors.dart';
 import 'widget/search_bar.dart';
@@ -15,8 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  OverlayEntry? overlayEntry;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,11 +25,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.only(bottom: 20, right: 15),
           child: FloatingActionButton(
             onPressed: () {
-              ShowOverlay.show(
-                context,
-                initialTaskText: '',
-              );
-              OverlayManager.storeContext(context);
+              ShowDialog.show(context);
             },
             backgroundColor: CustomColors.yellow,
             child: const Icon(
