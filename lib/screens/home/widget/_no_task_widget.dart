@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+part of 'display_task_list.dart';
 
-import '../../../constants/assets.dart';
-import '../../../constants/spaces.dart';
-import '../../../themes/colors.dart';
-
-class NoTasksWidget extends StatelessWidget {
-  const NoTasksWidget({Key? key}) : super(key: key);
+class _NoTasksWidget extends StatelessWidget {
+  const _NoTasksWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

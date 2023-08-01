@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/services/auth_provider.dart';
 
 class TodoProvider {
   final _firestore = FirebaseFirestore.instance;
@@ -35,6 +36,9 @@ class TodoProvider {
   }
 
   fetchTodos() {
-    return _firestore.collection('todos').snapshots();
+    return FirebaseFirestore.instance
+        .collection('todos')
+        .where('user_id', isEqualTo: AuthProvider.getCurrentUserId())
+        .snapshots();
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/widget/display_task_list.dart';
+import 'package:todo_app/services/auth_provider.dart';
 
 import 'package:todo_app/utils/show_dialog.dart';
-
 import '../../themes/colors.dart';
 import 'widget/search_bar.dart';
 
@@ -17,9 +17,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () {},
       child: Scaffold(
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 20, right: 15),
@@ -37,7 +35,21 @@ class _HomeState extends State<Home> {
         backgroundColor: CustomColors.backgroundColor,
         body: SingleChildScrollView(
           child: SafeArea(
-            child: Column(children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 12, right: 15),
+                child: IconButton(
+                  onPressed: () async {
+                    await AuthProvider.logout();
+                  },
+                  icon: const Icon(
+                    Icons.logout_sharp,
+                    size: 25,
+                    color: CustomColors.mediumGrey,
+                  ),
+                ),
+              ),
               SearchBarWidget(focusNode: FocusNode()),
               SizedBox(
                 height: 750,

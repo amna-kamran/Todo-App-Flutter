@@ -9,19 +9,19 @@ import '../../../constants/assets.dart';
 import '../../../constants/spaces.dart';
 import '../../../themes/colors.dart';
 
+final TodoProvider todoMethods = TodoProvider();
+
 class TaskTile extends StatelessWidget {
   final String text;
   final String id;
   final bool hasCompleted;
 
-  TaskTile({
+  const TaskTile({
     Key? key,
     required this.text,
     this.id = "",
     required this.hasCompleted,
   }) : super(key: key);
-
-  final TodoProvider todoMethods = TodoProvider();
 
   void _handleCheckBoxTap() {
     todoMethods.updateTask(id, {'hasCompleted': !hasCompleted});
@@ -34,8 +34,14 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Bounce(
-      onPressed: () => ShowDialog.show(context,
-          initialTaskText: text, id: id, isEditing: true),
+      onPressed: () {
+        ShowDialog.show(
+          context,
+          initialTaskText: text,
+          id: id,
+          isEditing: true,
+        );
+      },
       duration: const Duration(milliseconds: 100),
       child: Container(
         margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
