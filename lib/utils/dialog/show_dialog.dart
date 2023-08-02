@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/services/auth_provider.dart';
 import 'package:todo_app/services/todo_provider.dart';
-import '../../constants/assets.dart';
-import '../../constants/spaces.dart';
-import '../../themes/colors.dart';
 import 'dialog_widget.dart';
 
 final TodoProvider todoMethods = TodoProvider();
