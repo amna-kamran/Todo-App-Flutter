@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/widget/task_list.dart';
 import 'package:todo_app/services/auth_provider.dart';
-import 'package:todo_app/utils/show_dialog.dart';
+import 'package:todo_app/utils/dialog/show_dialog.dart';
 import '../../themes/colors.dart';
 import 'widget/search_bar.dart';
 

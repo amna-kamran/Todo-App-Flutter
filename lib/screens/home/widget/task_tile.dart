@@ -3,7 +3,7 @@ import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:todo_app/services/todo_provider.dart';
-import 'package:todo_app/utils/show_dialog.dart';
+import 'package:todo_app/utils/dialog/show_dialog.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/spaces.dart';
