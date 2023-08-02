@@ -1,7 +1,7 @@
-part of 'display_task_list.dart';
+part of 'task_list.dart';
 
 class _NoTasksWidget extends StatelessWidget {
-  const _NoTasksWidget({Key? key}) : super(key: key);
+  const _NoTasksWidget();
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/home/widget/display_task_list.dart';
+import 'package:todo_app/screens/home/widget/task_list.dart';
 import 'package:todo_app/services/auth_provider.dart';
 import 'package:todo_app/utils/show_dialog.dart';
 import '../../themes/colors.dart';
@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
       backgroundColor: CustomColors.backgroundColor,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          child: Column(children: [
             Padding(
               padding: const EdgeInsets.only(top: 12, right: 15),
               child: IconButton(
@@ -47,9 +47,9 @@ class _HomeState extends State<Home> {
               ),
             ),
             SearchBarWidget(focusNode: FocusNode()),
-            SizedBox(
+            const SizedBox(
               height: 750,
-              child: displayTaskList(),
+              child: TaskListWidget(),
             ),
           ]),
         ),

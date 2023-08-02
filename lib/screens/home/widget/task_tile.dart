@@ -11,12 +11,12 @@ import '../../../themes/colors.dart';
 
 final TodoProvider todoMethods = TodoProvider();
 
-class TaskTile extends StatelessWidget {
+class TaskTileWidget extends StatelessWidget {
   final String text;
   final String id;
   final bool hasCompleted;
 
-  const TaskTile({
+  const TaskTileWidget({
     Key? key,
     required this.text,
     this.id = "",
