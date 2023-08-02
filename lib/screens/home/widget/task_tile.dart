@@ -71,23 +71,33 @@ class TaskTile extends StatelessWidget {
             ),
             Spaces.w25,
             Flexible(
-              child: Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    decoration: hasCompleted
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none,
-                    decorationColor: CustomColors.yellow,
-                    decorationThickness: 2.0,
-                    color: hasCompleted
-                        ? CustomColors.lightGrey
-                        : CustomColors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        decoration: hasCompleted
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        decorationColor: CustomColors.yellow,
+                        decorationThickness: 2.0,
+                        color: hasCompleted
+                            ? CustomColors.lightGrey
+                            : CustomColors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                  Spaces.h20,
+                  Image.asset(
+                    Assets.cakeImg,
+                    height: 100,
+                    width: 100,
+                  ),
+                ],
               ),
             ),
             IconButton(

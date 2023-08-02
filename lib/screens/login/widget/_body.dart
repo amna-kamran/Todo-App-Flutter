@@ -26,9 +26,17 @@ class _BodyState extends State<_Body> {
                 style: TextStyle(color: CustomColors.darkGrey, fontSize: 70),
               ),
               Spaces.h35,
-              buildFormBuilderTextField("email", "Email", false),
+              AppInputTextField(
+                fieldType: FieldType.email,
+                labelText: 'Email',
+              ),
               const SizedBox(height: 10),
-              buildFormBuilderTextField("password", "Password", true),
+              AppInputTextField(
+                fieldType: FieldType.password,
+                labelText: 'Passord',
+                minLength: 6,
+                maxLength: 20,
+              ),
               const SizedBox(height: 20),
               isLoading
                   ? const CircularProgressIndicator()
@@ -55,8 +63,8 @@ class _BodyState extends State<_Body> {
                         );
 
                         await AuthProvider.login(
-                          data['email'],
-                          data['password'],
+                          data['Email'],
+                          data['Passord'],
                         );
 
                         setState(

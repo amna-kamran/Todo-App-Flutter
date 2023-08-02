@@ -25,11 +25,22 @@ class __BodyState extends State<_Body> {
                   style: TextStyle(color: CustomColors.darkGrey, fontSize: 70),
                 ),
                 Spaces.h20,
-                buildFormBuilderTextField("name", "Name", false),
+                AppInputTextField(
+                  fieldType: FieldType.text,
+                  labelText: 'Name',
+                ),
                 Spaces.h20,
-                buildFormBuilderTextField("email", "Email", false),
+                AppInputTextField(
+                  fieldType: FieldType.email,
+                  labelText: "Email",
+                ),
                 Spaces.h20,
-                buildFormBuilderTextField("password", "Password", true),
+                AppInputTextField(
+                  fieldType: FieldType.password,
+                  labelText: 'Paswword',
+                  minLength: 6,
+                  maxLength: 20,
+                ),
                 Spaces.h20,
                 isLoading
                     ? const CircularProgressIndicator()
@@ -44,6 +55,7 @@ class __BodyState extends State<_Body> {
                         ),
                         onPressed: () async {
                           final form = _Body._formKey.currentState;
+                          debugPrint(form.toString());
                           final isValid = form!.saveAndValidate();
                           if (!isValid) return;
 
