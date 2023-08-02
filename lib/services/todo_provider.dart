@@ -9,8 +9,8 @@ class TodoProvider {
     try {
       final CollectionReference collection = _firestore.collection('todos');
 
-      DateTime timestamp = DateTime.now();
-
+      int timestamp = DateTime.now().microsecondsSinceEpoch;
+      debugPrint(timestamp.toString());
       await collection.doc(timestamp.toString()).set(data);
     } catch (e) {
       debugPrint(e.toString());

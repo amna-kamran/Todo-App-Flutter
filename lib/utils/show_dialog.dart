@@ -17,74 +17,83 @@ class ShowDialog {
   }) {
     final TextEditingController textFieldController =
         TextEditingController(text: initialTaskText);
+
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: CustomColors.accent,
-          content: Row(
-            children: [
-              SvgPicture.asset(
-                Assets.boxSvg,
-                height: 25,
-                width: 25,
-              ),
-              Spaces.w20,
-              Expanded(
-                child: TextFormField(
-                  style: const TextStyle(color: CustomColors.white),
-                  controller: textFieldController,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your text',
-                    hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 116, 115, 115),
-                    ),
-                    border: InputBorder.none,
+          content: StatefulBuilder(
+            builder: (context, setState) {
+              return Row(
+                children: [
+                  SvgPicture.asset(
+                    Assets.boxSvg,
+                    height: 25,
+                    width: 25,
                   ),
-                ),
-              ),
-              Spaces.h15,
-              GestureDetector(
-                onTap: () {
-                  isEditing
-                      ? todoMethods.updateTask(
-                          id,
-                          {
-                            'taskContent': textFieldController.text,
-                          },
-                        )
-                      : todoMethods.create(
-                          {
-                            'hasCompleted': false,
-                            'taskContent': textFieldController.text,
-                            'user_id': AuthProvider.getCurrentUserId(),
-                          },
-                        );
-
-                  Navigator.pop(context);
-                },
-                child: SizedBox(
-                  height: 60,
-                  width: 90,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.centerRight,
-                    height: 30,
-                    width: 70,
-                    child: Text(
-                      'Done',
-                      style: TextStyle(
-                        color: textFieldController.text == ""
-                            ? CustomColors.lightGrey
-                            : CustomColors.yellow,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                  Spaces.w20,
+                  Expanded(
+                    child: TextFormField(
+                      style: const TextStyle(color: CustomColors.white),
+                      controller: textFieldController,
+                      onChanged: (value) {
+                        setState(
+                            () {}); // This line is necessary to rebuild the UI
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your text',
+                        hintStyle: TextStyle(
+                          color: Color.fromARGB(255, 116, 115, 115),
+                        ),
+                        border: InputBorder.none,
                       ),
                     ),
                   ),
-                ),
-              ),
-            ],
+                  Spaces.h15,
+                  GestureDetector(
+                    onTap: () {
+                      isEditing
+                          ? todoMethods.updateTask(
+                              id,
+                              {
+                                'taskContent': textFieldController.text,
+                              },
+                            )
+                          : todoMethods.create(
+                              {
+                                'hasCompleted': false,
+                                'taskContent': textFieldController.text,
+                                'user_id': AuthProvider.getCurrentUserId(),
+                              },
+                            );
+
+                      Navigator.pop(context);
+                    },
+                    child: SizedBox(
+                      height: 60,
+                      width: 90,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        alignment: Alignment.centerRight,
+                        height: 30,
+                        width: 70,
+                        child: Text(
+                          'Done',
+                          style: TextStyle(
+                            color: textFieldController.text.isEmpty
+                                ? CustomColors.lightGrey
+                                : CustomColors.yellow,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         );
       },
