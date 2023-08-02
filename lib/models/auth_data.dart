@@ -19,6 +19,18 @@ class AuthData {
     };
   }
 
+  AuthData copyWith({
+    String? name,
+    String? email,
+    String? id,
+  }) {
+    return AuthData(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      id: id ?? this.id,
+    );
+  }
+
   factory AuthData.fromMap(Map<String, dynamic> map) {
     return AuthData(
       name: map['name'] as String,
