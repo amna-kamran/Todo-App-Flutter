@@ -26,11 +26,6 @@ class __BodyState extends State<_Body> {
                 ),
                 Spaces.h20,
                 AppInputTextField(
-                  fieldType: FieldType.text,
-                  labelText: 'Name',
-                ),
-                Spaces.h20,
-                AppInputTextField(
                   fieldType: FieldType.email,
                   labelText: "Email",
                 ),
@@ -69,7 +64,6 @@ class __BodyState extends State<_Body> {
                           await AuthProvider.register(
                             data['Password'],
                             data['Email'],
-                            data['Name'],
                           );
                           await AuthProvider.login(
                             data['Email'],
