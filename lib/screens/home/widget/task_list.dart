@@ -8,7 +8,7 @@ import 'package:todo_app/services/todo_provider.dart';
 import 'package:todo_app/themes/colors.dart';
 part '_no_task_widget.dart';
 
-TodoProvider todoMethods = TodoProvider();
+TodoProvider todoProvider = TodoProvider();
 
 class TaskListWidget extends StatelessWidget {
   const TaskListWidget({super.key});
@@ -16,7 +16,7 @@ class TaskListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: todoMethods.fetchTodos(),
+      stream: todoProvider.fetchTodos(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasData) {
           final taskDocs = snapshot.data!.docs.reversed.toList();

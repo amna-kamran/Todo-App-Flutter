@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "262425652979-68cn5a9hv8katiko8rf7iqok5252sh2v.apps.googleusercontent.com",
+          "client_id": "262425652979-kiq8j8ukjlofpu94me6osgg478jb6k1r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "262425652979-68cn5a9hv8katiko8rf7iqok5252sh2v.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "262425652979-or5gsktbjkdde7ng85h9j3umdeo0u33d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.todoApp.RunnerTests"
+              }
             }
           ]
         }

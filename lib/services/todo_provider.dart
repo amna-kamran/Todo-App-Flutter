@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/services/auth_provider.dart';
+import 'package:todo_app/services/auth/auth_provider.dart';
 
 class TodoProvider {
   final _firestore = FirebaseFirestore.instance;
@@ -40,5 +40,18 @@ class TodoProvider {
         .collection('todos')
         .where('user_id', isEqualTo: AuthProvider.getCurrentUserId())
         .snapshots();
+  }
+
+  Future<void> storeImgIdwithTaskId(Map<String, dynamic> data) async {
+    try {
+      final CollectionReference collection = _firestore.collection('images');
+
+      int timestamp = DateTime.now().microsecondsSinceEpoch;
+      debugPrint(timestamp.toString());
+      await collection.doc(timestamp.toString()).set(data);
+    } catch (e) {
+      debugPrint(e.toString());
+      throw ("some error occurred");
+    }
   }
 }

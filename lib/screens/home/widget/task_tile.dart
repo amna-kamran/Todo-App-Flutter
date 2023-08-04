@@ -1,15 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:todo_app/screens/home/widget/image_grid.dart';
 import 'package:todo_app/services/todo_provider.dart';
 import 'package:todo_app/utils/dialog/show_dialog.dart';
-
 import '../../../constants/assets.dart';
 import '../../../constants/spaces.dart';
 import '../../../themes/colors.dart';
 
-final TodoProvider todoMethods = TodoProvider();
+final TodoProvider todoProvider = TodoProvider();
 
 class TaskTileWidget extends StatelessWidget {
   final String text;
@@ -24,15 +24,20 @@ class TaskTileWidget extends StatelessWidget {
   }) : super(key: key);
 
   void _handleCheckBoxTap() {
-    todoMethods.updateTask(id, {'hasCompleted': !hasCompleted});
+    todoProvider.updateTask(id, {'hasCompleted': !hasCompleted});
   }
 
   void _handleDeleteTap() {
-    todoMethods.deleteData(id);
+    todoProvider.deleteData(id);
   }
 
   @override
   Widget build(BuildContext context) {
+    List<String> img = [
+      "https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp",
+      "https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp",
+      "https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp",
+    ];
     return Bounce(
       onPressed: () {
         ShowDialog.show(
@@ -92,10 +97,8 @@ class TaskTileWidget extends StatelessWidget {
                     ),
                   ),
                   Spaces.h20,
-                  Image.asset(
-                    Assets.cakeImg,
-                    height: 100,
-                    width: 100,
+                  CustomGrid(
+                    img: img,
                   ),
                 ],
               ),
