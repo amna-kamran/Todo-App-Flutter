@@ -8,8 +8,7 @@ class AuthProvider {
   static final _auth = FirebaseAuth.instance;
   static final _firestore = FirebaseFirestore.instance;
 
-  static Future<UserCredential> register(
-      String password, String email, String name) async {
+  static Future<UserCredential> register(String password, String email) async {
     try {
       final user = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -17,7 +16,6 @@ class AuthProvider {
       );
 
       final data = AuthData(
-        name: name,
         email: email,
       );
 
