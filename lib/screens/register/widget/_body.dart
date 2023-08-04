@@ -67,13 +67,13 @@ class __BodyState extends State<_Body> {
                           );
 
                           await AuthProvider.register(
-                            data['password'],
-                            data['email'],
-                            data['name'],
+                            data['Password'],
+                            data['Email'],
+                            data['Name'],
                           );
                           await AuthProvider.login(
-                            data['email'],
-                            data['password'],
+                            data['Email'],
+                            data['Password'],
                           );
                           setState(
                             () {

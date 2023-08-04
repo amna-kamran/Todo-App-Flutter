@@ -33,7 +33,7 @@ class _BodyState extends State<_Body> {
               const SizedBox(height: 10),
               AppInputTextField(
                 fieldType: FieldType.password,
-                labelText: 'Passord',
+                labelText: 'Password',
                 minLength: 6,
                 maxLength: 20,
               ),
@@ -64,13 +64,7 @@ class _BodyState extends State<_Body> {
 
                         await AuthProvider.login(
                           data['Email'],
-                          data['Passord'],
-                        );
-
-                        setState(
-                          () {
-                            isLoading = false;
-                          },
+                          data['Password'],
                         );
                       },
                       child: const Text(
@@ -80,6 +74,17 @@ class _BodyState extends State<_Body> {
                         ),
                       ),
                     ),
+              ElevatedButton(
+                onPressed: () {
+                  GoogleAuthHelper.signInWithGoogle();
+                },
+                child: const Text(
+                  "Login with Google",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
