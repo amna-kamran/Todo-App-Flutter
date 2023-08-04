@@ -19,7 +19,6 @@ class AuthProvider {
       final data = AuthData(
         name: name,
         email: email,
-        id: user.user!.uid,
       );
 
       await _firestore
@@ -62,5 +61,17 @@ class AuthProvider {
   static String? getCurrentUserId() {
     final User? user = FirebaseAuth.instance.currentUser;
     return user?.uid;
+  }
+
+  static String? getCurrentUserEmail() {
+    final User? user = FirebaseAuth.instance.currentUser;
+    return user?.email;
+  }
+
+  static storeGoogleUserInfoInFirestore() async {
+    await _firestore
+        .collection('users')
+        .doc(getCurrentUserId())
+        .set({"email": getCurrentUserEmail()});
   }
 }

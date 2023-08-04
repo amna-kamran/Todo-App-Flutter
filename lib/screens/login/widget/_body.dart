@@ -75,8 +75,9 @@ class _BodyState extends State<_Body> {
                       ),
                     ),
               ElevatedButton(
-                onPressed: () {
-                  GoogleAuthHelper.signInWithGoogle();
+                onPressed: () async {
+                  await GoogleAuthHelper.signInWithGoogle();
+                  AuthProvider.storeGoogleUserInfoInFirestore();
                 },
                 child: const Text(
                   "Login with Google",

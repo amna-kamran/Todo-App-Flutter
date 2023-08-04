@@ -3,31 +3,26 @@ import 'dart:convert';
 class AuthData {
   final String name;
   final String email;
-  final String id;
 
   AuthData({
     required this.name,
     required this.email,
-    required this.id,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
       'email': email,
-      'id': id,
     };
   }
 
   AuthData copyWith({
     String? name,
     String? email,
-    String? id,
   }) {
     return AuthData(
       name: name ?? this.name,
       email: email ?? this.email,
-      id: id ?? this.id,
     );
   }
 
@@ -35,7 +30,6 @@ class AuthData {
     return AuthData(
       name: map['name'] as String,
       email: map['email'] as String,
-      id: map['id'] as String,
     );
   }
 
@@ -45,15 +39,15 @@ class AuthData {
       AuthData.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'AuthData(name: $name, email: $email, id: $id)';
+  String toString() => 'AuthData(name: $name, email: $email)';
 
   @override
   bool operator ==(covariant AuthData other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.email == email && other.id == id;
+    return other.name == name && other.email == email;
   }
 
   @override
-  int get hashCode => name.hashCode ^ email.hashCode ^ id.hashCode;
+  int get hashCode => name.hashCode ^ email.hashCode;
 }

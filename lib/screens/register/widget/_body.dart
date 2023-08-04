@@ -37,7 +37,7 @@ class __BodyState extends State<_Body> {
                 Spaces.h20,
                 AppInputTextField(
                   fieldType: FieldType.password,
-                  labelText: 'Paswword',
+                  labelText: 'Password',
                   minLength: 6,
                   maxLength: 20,
                 ),
@@ -80,6 +80,7 @@ class __BodyState extends State<_Body> {
                               isLoading = false;
                             },
                           );
+
                           Navigator.pop(context);
                         },
                         child: const Text("Register")),
