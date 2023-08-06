@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/screens/home/widget/image_grid.dart';
+import 'package:todo_app/screens/home/widget/image_grid_widget.dart';
 import 'package:todo_app/services/todo_provider.dart';
 import 'package:todo_app/utils/dialog/show_dialog.dart';
 import '../../../constants/assets.dart';

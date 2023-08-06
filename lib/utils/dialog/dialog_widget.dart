@@ -28,6 +28,7 @@ class TaskDialog extends StatelessWidget {
     final TodoProvider todoProvider = TodoProvider();
     final TextEditingController textFieldController =
         TextEditingController(text: initialTaskText);
+    bool uploadImage = false;
 
     return AlertDialog(
       backgroundColor: CustomColors.accent,
@@ -61,14 +62,14 @@ class TaskDialog extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   if (isEditing) {
-                    todoMethods.updateTask(
+                    todoProvider.updateTask(
                       id,
                       {
                         'taskContent': textFieldController.text,
                       },
                     );
                   } else {
-                    todoMethods.create(
+                    todoProvider.create(
                       {
                         'hasCompleted': false,
                         'taskContent': textFieldController.text,
@@ -97,28 +98,29 @@ class TaskDialog extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final result = await FilePicker.platform.pickFiles();
+                    if (isEditing)
+                      ElevatedButton(
+                        onPressed: () async {
+                          final result = await FilePicker.platform.pickFiles();
 
-                        if (result != null) {
-                          final File file = File(result.files.single.path!);
-                          final timeStamp =
-                              DateTime.now().microsecondsSinceEpoch.toString();
-                          final url =
-                              await MediaProvider.uploadImage(file, timeStamp);
+                          if (result != null) {
+                            final File file = File(result.files.single.path!);
+                            final timeStamp = DateTime.now()
+                                .microsecondsSinceEpoch
+                                .toString();
 
-                          debugPrint(url);
+                            await MediaProvider.uploadImage(file, timeStamp);
+                            MediaProvider.storeImageUrl(id, timeStamp);
 
-                          todoProvider.storeImgIdwithTaskId(
-                            {'imageId': timeStamp, 'taskId': id},
-                          );
-                        } else {
-                          debugPrint("no file picked");
-                        }
-                      },
-                      child: const Text("Upload Data"),
-                    ),
+                            todoProvider.storeImgIdwithTaskId(
+                              {'imageId': timeStamp, 'taskId': id},
+                            );
+                          } else {
+                            debugPrint("no file picked");
+                          }
+                        },
+                        child: const Text("Upload Data"),
+                      ),
                   ],
                 ),
               ),
