@@ -1,45 +1,55 @@
 import 'package:flutter/material.dart';
 
-class CustomGrid extends StatelessWidget {
-  final List<String> img;
+class ImgGrid extends StatelessWidget {
+  final Stream<List<String>> imgStream;
 
-  const CustomGrid({super.key, required this.img});
+  const ImgGrid({Key? key, required this.imgStream}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int gridItemCount = img.length;
-    int crossAxisCount = (img.length > 1) ? 2 : 1;
-
-    return SizedBox(
-      height: 200,
-      width: 200,
-      child: Center(
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
-          ),
-          itemCount: gridItemCount,
-          itemBuilder: (context, index) {
-            if (index < img.length) {
-              return Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  image: DecorationImage(
-                    image: NetworkImage(img[index]),
-                    fit: BoxFit.cover,
-                  ),
+    return StreamBuilder<List<String>>(
+      stream: imgStream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          List<String> imgList = snapshot.data!;
+          int gridItemCount = imgList.length;
+          int crossAxisCount = (gridItemCount > 1) ? 2 : 1;
+          if (gridItemCount == 0) {
+            return const SizedBox.shrink();
+          }
+          return SizedBox(
+            height: 200,
+            width: 200,
+            child: Center(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 4,
+                  mainAxisSpacing: 4,
                 ),
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
-      ),
+                itemCount: gridItemCount,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      image: DecorationImage(
+                        image: NetworkImage(imgList[index]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }

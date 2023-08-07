@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app/screens/home/widget/image_grid_widget.dart';
+import 'package:todo_app/services/media/data_provider.dart';
 import 'package:todo_app/services/todo_provider.dart';
 import 'package:todo_app/utils/dialog/show_dialog.dart';
 import '../../../constants/assets.dart';
@@ -33,11 +33,8 @@ class TaskTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> img = [
-      "https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp",
-      "https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp",
-      "https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp",
-    ];
+    Stream<List<String>> imgStream = MediaProvider.fetchImgURLs(id);
+
     return Bounce(
       onPressed: () {
         ShowDialog.show(
@@ -97,8 +94,8 @@ class TaskTileWidget extends StatelessWidget {
                     ),
                   ),
                   Spaces.h20,
-                  CustomGrid(
-                    img: img,
+                  ImgGrid(
+                    imgStream: imgStream,
                   ),
                 ],
               ),
