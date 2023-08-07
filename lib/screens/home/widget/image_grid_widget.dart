@@ -17,35 +17,34 @@ class ImgGrid extends StatelessWidget {
         } else {
           List<String> imgList = snapshot.data!;
           int gridItemCount = imgList.length;
-          int crossAxisCount = (gridItemCount > 1) ? 2 : 1;
+
           if (gridItemCount == 0) {
             return const SizedBox.shrink();
           }
+
+          int crossAxisCount = 3;
+          int rowCount = (gridItemCount / crossAxisCount).ceil();
+
           return SizedBox(
-            height: 200,
-            width: 200,
-            child: Center(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 4,
-                  mainAxisSpacing: 4,
-                ),
-                itemCount: gridItemCount,
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      image: DecorationImage(
-                        image: NetworkImage(imgList[index]),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
-                },
+            height: rowCount * 80.0,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
               ),
+              itemCount: gridItemCount,
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    image: DecorationImage(
+                      image: NetworkImage(imgList[index]),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             ),
           );
         }
