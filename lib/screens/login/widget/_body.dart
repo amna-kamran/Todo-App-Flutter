@@ -11,107 +11,127 @@ class _Body extends StatefulWidget {
 
 class _BodyState extends State<_Body> {
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: FormBuilder(
-        key: _Body._formKey,
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          color: CustomColors.backgroundColor,
-          child: Column(
-            children: [
-              const Text(
-                "Login",
-                style: TextStyle(color: CustomColors.darkGrey, fontSize: 70),
-              ),
-              Spaces.h35,
-              AppInputTextField(
-                fieldType: FieldType.email,
-                labelText: 'Email',
-              ),
-              const SizedBox(height: 10),
-              AppInputTextField(
-                fieldType: FieldType.password,
-                labelText: 'Password',
-                minLength: 6,
-                maxLength: 20,
-              ),
-              const SizedBox(height: 20),
-              isLoading
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all<Size>(
-                            const Size(300, 50)),
-                        foregroundColor: MaterialStateProperty.all<Color>(
-                            CustomColors.lightGrey),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            CustomColors.accent),
-                      ),
-                      onPressed: () async {
-                        final form = _Body._formKey.currentState;
-                        final isValid = form!.saveAndValidate();
-                        if (!isValid) return;
-
-                        final data = form.value;
-
-                        setState(
-                          () {
-                            isLoading = true;
-                          },
-                        );
-
-                        await AuthProvider.login(
-                          data['Email'],
-                          data['Password'],
-                        );
-                      },
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-              ElevatedButton(
-                onPressed: () async {
-                  await GoogleAuthHelper.signInWithGoogle();
-                  AuthProvider.storeGoogleUserInfoInFirestore();
-                },
-                child: const Text(
-                  "Login with Google",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      child: Container(
+        padding:
+            const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [CustomColors.backgroundColor, CustomColors.lightGrey],
+            begin: Alignment.topCenter,
+            end: Alignment(0, 6),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(
                 children: [
-                  const Text(
-                    "Don't have an account?",
-                    style: TextStyle(color: CustomColors.lightGrey),
+                  TextSpan(
+                    text: "Hi, ",
+                    style: GoogleFonts.openSans(
+                        color: CustomColors.white, fontSize: 50),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterScreen(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Register",
-                      style: TextStyle(color: CustomColors.yellow),
+                  TextSpan(
+                    text: "Welcome",
+                    style: GoogleFonts.openSans(
+                      color: CustomColors.white,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  TextSpan(
+                    text: " Back!",
+                    style: GoogleFonts.openSans(
+                        color: CustomColors.white, fontSize: 50),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            Spaces.h35,
+            AppInputTextField(
+              fieldType: FieldType.email,
+              labelText: 'Email',
+            ),
+            const SizedBox(height: 10),
+            AppInputTextField(
+              fieldType: FieldType.password,
+              labelText: 'Password',
+              minLength: 6,
+              maxLength: 20,
+            ),
+            const SizedBox(height: 20),
+            isLoading
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      onPrimary: CustomColors.lightGrey,
+                      fixedSize: const Size(200, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        side: const BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () async {
+                      final form = _Body._formKey.currentState;
+                      final isValid = form!.saveAndValidate();
+                      if (!isValid) return;
+
+                      final data = form.value;
+
+                      setState(() {
+                        isLoading = true;
+                      });
+
+                      await AuthProvider.login(
+                        data['Email'],
+                        data['Password'],
+                      );
+
+                      setState(() {
+                        isLoading = false;
+                      });
+                    },
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+            Spaces.h40,
+            const GoogleLoginButton(),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Don't have an account?",
+                  style: TextStyle(color: CustomColors.lightGrey),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Register",
+                    style: TextStyle(color: CustomColors.yellow),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

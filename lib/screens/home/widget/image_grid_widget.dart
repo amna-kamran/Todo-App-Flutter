@@ -10,10 +10,10 @@ class ImgGrid extends StatelessWidget {
     return StreamBuilder<List<String>>(
       stream: imgStream,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        } else if (snapshot.hasError) {
+        if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
+        } else if (!snapshot.hasData || snapshot.data == null) {
+          return const SizedBox.shrink();
         } else {
           List<String> imgList = snapshot.data!;
           int gridItemCount = imgList.length;

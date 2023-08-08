@@ -44,27 +44,44 @@ class AppInputTextField extends StatelessWidget {
         fieldType == FieldType.password || fieldType == FieldType.pincode;
     bool isEmail = fieldType == FieldType.email;
 
-    return FormBuilderTextField(
-      name: labelText,
-      obscureText: obscureText,
-      maxLength: maxLength,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: const TextStyle(
-          color: CustomColors.mediumGrey,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: FormBuilderTextField(
+        name: labelText,
+        obscureText: obscureText,
+        maxLength: maxLength,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: const TextStyle(
+            color: CustomColors.mediumGrey,
+          ),
+          filled: true,
+          fillColor: CustomColors.accent,
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
-        filled: true,
-        fillColor: CustomColors.accent,
-      ),
-      style: const TextStyle(color: CustomColors.mediumGrey),
-      validator: FormBuilderValidators.compose(
-        [
-          FormBuilderValidators.required(),
-          if (minLength != null && obscureText)
-            FormBuilderValidators.minLength(minLength!),
-          if (maxLength != null) FormBuilderValidators.maxLength(maxLength!),
-          if (!obscureText && isEmail) FormBuilderValidators.email(),
-        ],
+        style: const TextStyle(color: CustomColors.mediumGrey),
+        validator: FormBuilderValidators.compose(
+          [
+            FormBuilderValidators.required(),
+            if (minLength != null && obscureText)
+              FormBuilderValidators.minLength(minLength!),
+            if (maxLength != null) FormBuilderValidators.maxLength(maxLength!),
+            if (!obscureText && isEmail) FormBuilderValidators.email(),
+          ],
+        ),
       ),
     );
   }
