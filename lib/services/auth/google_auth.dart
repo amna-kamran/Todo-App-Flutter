@@ -6,24 +6,26 @@ class GoogleAuthHelper {
   static final GoogleSignIn googleSignIn = GoogleSignIn();
   static final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  static Future<UserCredential> signInWithGoogle() async {
+  static Future<void> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    if (googleUser != null) {
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    return await firebaseAuth.signInWithCredential(credential);
+      await firebaseAuth.signInWithCredential(credential);
+    }
   }
 
   static Future<void> signOut() async {
     try {
       await googleSignIn.disconnect();
-      firebaseAuth.signOut();
+      await firebaseAuth.signOut();
     } catch (e) {
       debugPrint('Error during sign-out: $e');
     }

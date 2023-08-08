@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/home/widget/task_list.dart';
-import 'package:todo_app/services/auth/auth_provider.dart';
+import 'package:todo_app/services/auth/google_auth.dart';
 import 'package:todo_app/utils/dialog/show_dialog.dart';
 import '../../themes/colors.dart';
 import 'widget/search_bar.dart';
@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.only(top: 12, right: 15),
               child: IconButton(
                 onPressed: () async {
-                  await AuthProvider.logout();
+                  await GoogleAuthHelper.signOut();
                 },
                 icon: const Icon(
                   Icons.logout_sharp,
