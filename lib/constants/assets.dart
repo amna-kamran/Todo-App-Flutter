@@ -6,4 +6,8 @@ class Assets {
   static const pointDownSvg = "assets/pointdown.svg";
   static const upSvg = "assets/up.svg";
   static const searchSvg = "assets/search.svg";
+  static const crossSvg = "assets/cross.svg";
+  static const notesSvg = "assets/notes.svg";
+  static const googleSvg = "assets/google.svg";
+  static const cakeImg = "assets/cake.jpg";
 }

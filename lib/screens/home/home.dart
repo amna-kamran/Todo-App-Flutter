@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/home/widget/overlay_manager.dart';
-
-import 'package:todo_app/screens/home/widget/scroll_search_bar.dart';
-import 'package:todo_app/screens/home/widget/show_overlay.dart';
-import 'package:todo_app/services/data_reader.dart';
-
-import '../../Themes/colors.dart';
+import 'package:todo_app/screens/home/widget/task_list.dart';
+import 'package:todo_app/services/auth/google_auth.dart';
+import 'package:todo_app/utils/dialog/show_dialog.dart';
+import '../../themes/colors.dart';
+import 'widget/search_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,8 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  OverlayEntry? overlayEntry;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +20,7 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.only(bottom: 20, right: 15),
         child: FloatingActionButton(
           onPressed: () {
-            FormFieldOverlay.show(context);
-            OverlayManager.storeContext(context);
-            debugPrint("pressed");
+            ShowDialog.show(context);
           },
           backgroundColor: CustomColors.yellow,
           child: const Icon(
@@ -36,13 +30,26 @@ class _HomeState extends State<Home> {
         ),
       ),
       backgroundColor: CustomColors.backgroundColor,
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: SafeArea(
           child: Column(children: [
-            SearchBarWidget(),
-            SizedBox(
+            Padding(
+              padding: const EdgeInsets.only(top: 12, right: 15),
+              child: IconButton(
+                onPressed: () async {
+                  await GoogleAuthHelper.signOut();
+                },
+                icon: const Icon(
+                  Icons.logout_sharp,
+                  size: 25,
+                  color: CustomColors.mediumGrey,
+                ),
+              ),
+            ),
+            SearchBarWidget(focusNode: FocusNode()),
+            const SizedBox(
               height: 750,
-              child: DataReader(),
+              child: TaskListWidget(),
             ),
           ]),
         ),
